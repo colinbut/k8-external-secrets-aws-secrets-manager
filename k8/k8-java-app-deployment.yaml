@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8-external-secret-aws-deployment
+  labels:
+    app: k8-external-secret-aws
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8-external-secret-aws
+  template:
+    metadata:
+      labels:
+        app: k8-external-secret-aws
+    spec:
+      containers:
+      - name: k8-external-secrets-aws-secrets-manager
+        image: colinbut/k8-external-secrets-aws-secrets-manager:0.0.1-snapshot
+        ports:
+        - containerPort: 8080
+        env:
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: api_key
+                key: api_key
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: api_key
+                key: api_key
