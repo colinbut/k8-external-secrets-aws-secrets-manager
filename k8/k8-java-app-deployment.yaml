@@ -23,10 +23,5 @@ spec:
           - name: API_KEY
             valueFrom:
               secretKeyRef:
-                name: api_key
-                key: api_key
-          - name: SECRET_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: api_key
+                name: api-key
                 key: api_key
