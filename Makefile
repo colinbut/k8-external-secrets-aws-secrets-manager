@@ -23,3 +23,6 @@ docker-build:
 	docker build --build-arg JAR_FILE=target/k8-external-secrets-aws-secrets-manager-$(VERSION).jar -t colinbut/k8-external-secrets-aws-secrets-manager:$(VERSION_LOWERCASE) .
 
 build-project: full-build docker-build
+
+docker-run:
+	docker run -d -p 8080:8080 colinbut/k8-external-secrets-aws-secrets-manager:$(VERSION_LOWERCASE)
